@@ -35,7 +35,7 @@ const chatInput = document.getElementById('chatInput');
 const chatSend = document.getElementById('chatSend');
 
 const API_KEY = "sk-483d9ba283104a60b9ab08f34ae961d1";
-const API_URL = "https://corsproxy.io/?https%3A%2F%2Fdashscope.aliyuncs.com%2Fcompatible-mode%2Fv1%2Fchat%2Fcompletions";
+const API_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions";
 
 const RESUME_CONTEXT = `你是刘子乾的个人AI助手。访问者会问关于刘子乾的问题，你需要根据以下简历内容回答。用中文回答，简洁友好，像在帮朋友介绍自己一样。如果问题超出简历范围，礼貌地说你只了解简历相关的内容。
 
@@ -105,7 +105,8 @@ chatForm.addEventListener('submit', async (e) => {
     typingEl.remove();
 
     if (!res.ok) {
-      addMessage('ai', '抱歉，出了点问题，请稍后再试。');
+      const errText = await res.text().catch(() => '');
+      addMessage('ai', `请求失败 (${res.status}): ${errText.slice(0, 100)}`);
       return;
     }
 
@@ -115,7 +116,7 @@ chatForm.addEventListener('submit', async (e) => {
     history.push({ role: 'assistant', content: reply });
   } catch (err) {
     typingEl.remove();
-    addMessage('ai', '网络异常，请稍后再试。');
+    addMessage('ai', '错误：' + err.message);
   } finally {
     chatSend.disabled = false;
     chatInput.focus();
