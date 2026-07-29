@@ -34,6 +34,20 @@ const chatForm = document.getElementById('chatForm');
 const chatInput = document.getElementById('chatInput');
 const chatSend = document.getElementById('chatSend');
 
+const API_KEY = "sk-483d9ba283104a60b9ab08f34ae961d1";
+const API_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions";
+
+const RESUME_CONTEXT = `你是刘子乾的个人AI助手。访问者会问关于刘子乾的问题，你需要根据以下简历内容回答。用中文回答，简洁友好，像在帮朋友介绍自己一样。如果问题超出简历范围，礼貌地说你只了解简历相关的内容。
+
+简历内容：
+刘子乾，男，22岁，软件工程本科应届生（2026届），现居杭州，求职意向为软件开发，期望薪资6k-7k，随时到岗。
+联系方式：邮箱 3371291932@qq.com，电话 13784211609。
+教育背景：广西民族大学相思湖学院，软件工程本科，2022.09 - 2026.06。
+实习经历：北京国交信通科技发展有限公司杭州办事处，项目运维工程师（后端开发方向），2026.03至今。独立设计隐患重复校验模块，基于Python开发巡检工具。
+项目经历：在线互动学习网站（SpringBoot+Vue2）、奶茶商品购物小程序（uni-app+Vue3）。
+技能：Java、SpringBoot、MyBatis-Plus、MySQL、Vue、Python、AI工程（Claude Code、RAG、Agent开发）。
+荣誉：国家励志奖学金、软考中级软件设计师、蓝桥杯Java B组三等奖。`;
+
 const history = [];
 
 function addMessage(role, text) {
@@ -54,12 +68,16 @@ function addTyping() {
   return div;
 }
 
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
+}
+
 chatForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const question = chatInput.value.trim();
   if (!question) return;
 
-  addMessage('user', question);
+  addMessage('user', escapeHtml(question));
   history.push({ role: 'user', content: question });
   chatInput.value = '';
   chatSend.disabled = true;
@@ -67,10 +85,21 @@ chatForm.addEventListener('submit', async (e) => {
   const typingEl = addTyping();
 
   try {
-    const res = await fetch('/api/chat', {
+    const res = await fetch(API_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: history }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: "qwen-plus",
+        messages: [
+          { role: 'system', content: RESUME_CONTEXT },
+          ...history
+        ],
+        max_tokens: 500,
+        temperature: 0.7,
+      }),
     });
 
     typingEl.remove();
@@ -80,39 +109,11 @@ chatForm.addEventListener('submit', async (e) => {
       return;
     }
 
-    const msgDiv = addMessage('ai', '');
-    const bubble = msgDiv.querySelector('.chat-bubble');
-    let fullText = '';
-
-    const reader = res.body.getReader();
-    const decoder = new TextDecoder();
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-
-      const chunk = decoder.decode(value, { stream: true });
-      const lines = chunk.split('\n');
-
-      for (const line of lines) {
-        if (!line.startsWith('data: ')) continue;
-        const data = line.slice(6);
-        if (data === '[DONE]') continue;
-
-        try {
-          const json = JSON.parse(data);
-          const delta = json.choices?.[0]?.delta?.content;
-          if (delta) {
-            fullText += delta;
-            bubble.textContent = fullText;
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-          }
-        } catch {}
-      }
-    }
-
-    history.push({ role: 'assistant', content: fullText });
-  } catch {
+    const data = await res.json();
+    const reply = data.choices?.[0]?.message?.content || '抱歉，暂时无法回答。';
+    addMessage('ai', escapeHtml(reply));
+    history.push({ role: 'assistant', content: reply });
+  } catch (err) {
     typingEl.remove();
     addMessage('ai', '网络异常，请稍后再试。');
   } finally {
