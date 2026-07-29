@@ -78,14 +78,14 @@ export async function onRequestPost(context) {
 ${RESUME}`,
   };
 
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+  const response = await fetch("https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      model: "gpt-4o-mini",
+      model: "qwen-plus",
       messages: [systemMessage, ...messages],
       stream: true,
       max_tokens: 500,
