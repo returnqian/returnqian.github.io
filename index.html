@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>刘子乾 - 软件开发</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 导航 -->
+  <nav class="nav">
+    <a href="#hero" class="nav-name">刘子乾</a>
+    <div class="nav-links">
+      <a href="#about">关于</a>
+      <a href="#skills">技能</a>
+      <a href="#experience">经历</a>
+      <a href="#projects">项目</a>
+      <a href="#education">荣誉</a>
+      <a href="#chat">AI 问答</a>
+      <a href="#contact">联系</a>
+    </div>
+    <button class="nav-toggle" aria-label="菜单">&#9776;</button>
+  </nav>
+
+  <!-- 首屏 -->
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <p class="hero-greeting">你好，我是</p>
+      <h1 class="hero-name">刘子乾</h1>
+      <p class="hero-title">软件开发 · 后端方向 · 2026届</p>
+      <a href="#about" class="hero-btn">了解更多</a>
+    </div>
+  </section>
+
+  <!-- 关于 -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title">关于我</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>软件工程本科应届生，主攻 Java 后端开发，具备前后端联调与独立交付能力。</p>
+          <p>有实习和独立项目经验，擅长 SpringBoot + MyBatis-Plus 技术栈，同时关注 AI 工程化落地，能用 Agent 与 RAG 技术构建实际应用。</p>
+        </div>
+        <div class="about-info">
+          <div class="info-item">
+            <span class="info-label">地点</span>
+            <span class="info-value">杭州</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">学历</span>
+            <span class="info-value">广西民族大学相思湖学院 · 软件工程（本科）</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">状态</span>
+            <span class="info-value">2026届 · 随时到岗</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">期望</span>
+            <span class="info-value">软件开发 · 6k-7k</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 技能 -->
+  <section id="skills" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">技能</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>后端开发</h3>
+          <p>Java · SpringBoot · SpringCloud（Nacos / OpenFeign）· MyBatis-Plus · RESTful API 设计</p>
+        </div>
+        <div class="skill-card">
+          <h3>数据库</h3>
+          <p>MySQL 多表关联设计、索引优化、SQL 调优</p>
+        </div>
+        <div class="skill-card">
+          <h3>前端 / 跨端</h3>
+          <p>Vue2 / Vue3 · uni-app · Element UI · 前后端联调</p>
+        </div>
+        <div class="skill-card">
+          <h3>AI 工程</h3>
+          <p>Claude Code / Codex 熟练使用 · RAG 应用开发 · Hermes Agent 工作流编排 · Agent 应用开发</p>
+        </div>
+        <div class="skill-card">
+          <h3>自动化 & 工具</h3>
+          <p>Python（Selenium / CDP · GUI 开发 · Excel / JSON 处理）· Git · Docker · Maven</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 经历 -->
+  <section id="experience" class="section">
+    <div class="container">
+      <h2 class="section-title">实习 & 校园经历</h2>
+      <div class="projects-list">
+        <article class="project-card">
+          <div class="project-meta">2026.03 — 至今</div>
+          <h3>北京国交信通科技发展有限公司（杭州办事处）</h3>
+          <p class="project-role">项目运维工程师（后端开发方向）</p>
+          <ul class="project-details">
+            <li>独立设计"隐患重复校验模块"双层防重架构（内存去重 + 数据库查重），覆盖 4 个核心接口</li>
+            <li>采用多维度匹配策略 + DTO 继承体系支持强制保存，兼顾准确性与灵活性</li>
+            <li>基于 Python tkinter 开发图片比对 GUI 工具，集成 Selenium 自动化上传，单次巡检耗时从 45 分钟压缩至 30 分钟以内</li>
+          </ul>
+          <div class="project-tags">
+            <span>MyBatis-Plus</span>
+            <span>SpringBoot</span>
+            <span>Python</span>
+            <span>Selenium</span>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-meta">2023.05 — 2025.03</div>
+          <h3>广西民族大学相思湖学院 · 设备与招采办公室</h3>
+          <p class="project-role">桌面运维助理（勤工俭学）</p>
+          <ul class="project-details">
+            <li>累计排查软硬件故障 500+ 起，设备正常运行率 98%</li>
+            <li>建立常见故障知识库，沉淀标准化排查流程</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 项目 -->
+  <section id="projects" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">项目经历</h2>
+      <div class="projects-list">
+        <article class="project-card">
+          <div class="project-meta">2025.12 — 2026.05 · 独立开发</div>
+          <h3>在线互动学习网站</h3>
+          <ul class="project-details">
+            <li>基于 Token + 自定义拦截器实现三种角色权限隔离</li>
+            <li>设计视频播放进度缓存机制，实现断点续播</li>
+            <li>实现完整在线考试流程：四种题型、自动阅卷、错题本</li>
+            <li>集成 Quill 富文本编辑器与文件上传组件</li>
+          </ul>
+          <div class="project-tags">
+            <span>SpringBoot</span>
+            <span>MyBatis-Plus</span>
+            <span>MySQL</span>
+            <span>Vue2</span>
+            <span>Element UI</span>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-meta">2024.07 — 2024.12 · 独立开发</div>
+          <h3>奶茶商品购物小程序</h3>
+          <ul class="project-details">
+            <li>对接多个 RESTful API，涵盖商品、购物车、鉴权等模块</li>
+            <li>基于 Token 实现登录状态持久化，全局数据管理 + 本地缓存确保跨页面状态同步</li>
+            <li>虚拟列表优化 200+ 商品列表，帧率稳定 60fps，加载速度提升 40%</li>
+          </ul>
+          <div class="project-tags">
+            <span>uni-app</span>
+            <span>Vue3</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 教育 & 荣誉 -->
+  <section id="education" class="section">
+    <div class="container">
+      <h2 class="section-title">教育 & 荣誉</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p><strong>广西民族大学相思湖学院</strong></p>
+          <p>软件工程（本科）· 2022.09 — 2026.06</p>
+          <p style="margin-top:0.5rem; color: var(--text-secondary); font-size: 0.9rem;">主修：数据结构、算法设计、操作系统、计算机网络、数据库设计、软件工程、Java 企业级开发</p>
+        </div>
+        <div class="about-info">
+          <div class="info-item">
+            <span class="info-label">国家级</span>
+            <span class="info-value">2023-2024 国家励志奖学金</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">证书</span>
+            <span class="info-value">软考中级 · 软件设计师</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">省级</span>
+            <span class="info-value">2025 蓝桥杯 Java B组三等奖</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI 问答 -->
+  <section id="chat" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">AI 问答</h2>
+      <p class="chat-desc">基于 RAG 技术，AI 会根据我的简历内容回答你的问题</p>
+      <div class="chat-box">
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-msg chat-msg--ai">
+            <div class="chat-bubble">你好！我是刘子乾的 AI 助手，你可以问我关于他的经历、技能、项目等问题 👋</div>
+          </div>
+        </div>
+        <form class="chat-input-area" id="chatForm">
+          <input type="text" class="chat-input" id="chatInput" placeholder="问问他的技能、项目经历..." autocomplete="off" />
+          <button type="submit" class="chat-send" id="chatSend">发送</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系 -->
+  <section id="contact" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">联系方式</h2>
+      <div class="contact-links">
+        <a href="mailto:3371291932@qq.com" class="contact-item">3371291932@qq.com</a>
+        <a href="tel:13784211609" class="contact-item">13784211609</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p>&copy; 2026 刘子乾</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
